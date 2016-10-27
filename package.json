@@ -1,0 +1,17 @@
+{
+  "name": "College search app",
+  "version": "1.0.0",
+  "description": "Mitochondria is the powerhouse of the cell.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "hamljs": "^0.6.2",
+    "now": "^0.25.1",
+    "start": "^4.0.2"
+  }
+}
