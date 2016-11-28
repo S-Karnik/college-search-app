@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1="College Search"
+    form(name="search", method="post")
+        div.input
+            input(type="text", name="college")
+        div.actions
+            input(type="submit", value="Search")
