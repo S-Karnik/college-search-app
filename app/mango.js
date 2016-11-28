@@ -4,14 +4,27 @@ var collections = ["colleges"]
 var mongojs = require("mongojs")
 var db = mongojs(databaseUrl, collections);
 
-db.on('connect', function () {
+db.on('connect', function() {
     console.log("I'm in.")
 })
 
-db.colleges.find({INSTNM: "Boston"}, function(err, schools) {
 
-  console.log(err);
-  schools.forEach( function(school) {
-    console.log(school);
-  } );
+db.colleges.find({
+    $text: {
+        $search: "MIT"
+    }
+}, {
+    score: {
+        $meta: "textScore"
+    }
+}).sort({
+    score: {
+        $meta: "textScore"
+    }
+}, function(err, schools) {
+
+    console.log(err);
+    schools.forEach(function(school) {
+        console.log(school);
+    });
 });
