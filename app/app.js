@@ -8,6 +8,11 @@ var fs = require('fs');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var app = express();
+var databaseUrl = "mongodb://reader:macandcheese314@ds147797.mlab.com:47797/cheese"
+var collections = ["colleges"]
+var mongojs = require("mongojs")
+var db = mongojs(databaseUrl, collections);
+
 
 //===========================================
 //===========AUTO-GENERATED CODE=============
@@ -89,8 +94,16 @@ app.listen(1024, '0.0.0.0', function() {
         data = JSON.parse(data);
         console.log(Object.keys(data["results"][0]))
     });
-});
 
-var url =  'http://graph.facebook.com/517267866/?fields=picture';
+
+    db.on('connect', function(err) {
+        console.log("I'm in.")
+        if(err){
+            console.log(err)
+        }
+    })
+
+    app.set("db", db)
+});
 
 module.exports = app;

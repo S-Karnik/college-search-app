@@ -8,10 +8,9 @@ db.on('connect', function() {
     console.log("I'm in.")
 })
 
-
 db.colleges.find({
     $text: {
-        $search: "MIT"
+        $search: "wopotech"
     }
 }, {
     score: {
