@@ -56,13 +56,6 @@ if (app.get('env') === 'development') {
     });
 }
 
-fs.readFile('API_KEY.txt', function read(err, data) {
-    if (err) {
-        throw err;
-    }
-    console.log(data.toString('utf8'));
-});
-
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -76,6 +69,7 @@ app.use(function(err, req, res, next) {
 //===========================================
 //===============BEGIN CODE==================
 //===========================================
+
 
 
 app.listen(1024, '0.0.0.0', function() {
