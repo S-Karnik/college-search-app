@@ -78,14 +78,6 @@ app.use(function(err, req, res, next) {
 //===========================================
 
 
-fs.readFile('API_KEY.txt', function read(err, data) {
-    if (err) {
-        throw err;
-    }
-    api_key = data.toString('utf8');
-    app.set("api_key", api_key)
-});
-
 app.listen(1024, '0.0.0.0', function() {
     console.log('Example app listening on port 1024!');
     var data;
