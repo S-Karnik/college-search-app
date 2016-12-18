@@ -14,15 +14,20 @@ router.get('/search', function(req, res, next) {
 });
 
 router.post('/search', function(req, res, next) {
-	var results = []
+    var results = []
     console.log("IP address: " + req.connection.remoteAddress);
     db = req.app.get("db")
     search_college = req.body.college;
     console.log(search_college)
     db.colleges.find({
-        $text: {
-            $search: search_college
-        }
+        $and: [{
+            "CITY": "Cambridge",
+            "SAT_AVG": { $gte: 1400 } 
+        }, {
+            $text: {
+                $search: search_college
+            }
+        }]
     }, {
         score: {
             $meta: "textScore"
@@ -34,11 +39,13 @@ router.post('/search', function(req, res, next) {
     }, function(err, schools) {
         //console.log(schools);
         schools.forEach(function(school) {
-        	console.log(school);
-        	results.push(school)
+            console.log(school);
+            results.push(school)
         });
-    	res.render("results.jade", {pageData: [results]});
-    	console.log(results)
+        res.render("results.jade", {
+            pageData: [results]
+        });
+        console.log(results)
     });
 });
 
