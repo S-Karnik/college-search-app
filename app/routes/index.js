@@ -19,6 +19,18 @@ router.post('/search', function(req, res, next) {
     db = req.app.get("db")
     search_college = req.body.college;
     console.log(search_college)
+    // CRITERIA:
+
+    // Major 1
+    // Major 2
+    // Location
+    // SAT
+    // ACT
+    // Gender
+    // Cost
+    // Average income 
+    // Average graduating debt
+
     db.colleges.find({
         $and: [{
             "CITY": "Cambridge",
@@ -40,7 +52,14 @@ router.post('/search', function(req, res, next) {
         //console.log(schools);
         schools.forEach(function(school) {
             console.log(school);
-            results.push(school)
+            school_data = []
+            school_data.push(school.INSTNM);
+            school_data.push(school.CITY);
+            school_data.push(school.SAT_AVG);
+            school_data.push(school.ZIP);
+            school_data.push(school.ADM_RATE);
+            school_data.push(school.TUITIONFEE_IN);
+            results.push(school_data);
         });
         res.render("results.jade", {
             pageData: [results]
